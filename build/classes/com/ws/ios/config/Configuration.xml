@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE configuration
+PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-config.dtd"> 
+<configuration>
+	<properties resource="com/ws/ios/config/datasource.properties"/>
+	<settings>
+		<setting name="useGeneratedKeys" value="true"/>
+	</settings>
+	<typeAliases>
+	    <typeAlias alias="permiso" type="com.ws.ios.dominio.Permiso"/>
+        <typeAlias alias="persona" type="com.ws.ios.dominio.Persona"/>
+        <typeAlias alias="rol" type="com.ws.ios.dominio.Rol"/>
+        <typeAlias alias="rolPermiso" type="com.ws.ios.dominio.RolPermiso"/>
+        <typeAlias alias="tipoUsuario" type="com.ws.ios.dominio.TipoUsuario"/>
+        <typeAlias alias="usuario" type="com.ws.ios.dominio.Usuario"/>
+        <typeAlias alias="usuarioPermisoEspecial" type="com.ws.ios.dominio.UsuarioPermisoEspecial"/>
+        <typeAlias alias="usuarioPermisoExcluido" type="com.ws.ios.dominio.UsuarioPermisoExcluido"/>
+        <typeAlias alias="usuarioRol" type="com.ws.ios.dominio.UsuarioRol"/>
+    </typeAliases>
+	<environments default="development"> 
+		<environment id="development"> 
+		<transactionManager type="JDBC"/> 
+		<dataSource type="POOLED">
+			<property name="driver" value="${jdbc.driverClassName}"/> 
+			<property name="url" value="${jdbc.url}"/>
+			<property name="username" value="${jdbc.username}"/> 
+			<property name="password" value="${jdbc.password}"/>
+            </dataSource>
+		</environment>
+	</environments>
+    <mappers>
+		<mapper resource="com/ws/ios/persistencia/mapeos/PermisoMapper.xml"/>
+		<mapper resource="com/ws/ios/persistencia/mapeos/PersonaMapper.xml"/>
+		<mapper resource="com/ws/ios/persistencia/mapeos/RolMapper.xml"/>
+	    <mapper resource="com/ws/ios/persistencia/mapeos/RolPermisoMapper.xml"/>
+		<mapper resource="com/ws/ios/persistencia/mapeos/TipoUsuarioMapper.xml"/>
+		<mapper resource="com/ws/ios/persistencia/mapeos/UsuarioMapper.xml"/>
+		<mapper resource="com/ws/ios/persistencia/mapeos/UsuarioPermisoEspecialMapper.xml"/>
+		<mapper resource="com/ws/ios/persistencia/mapeos/UsuarioPermisoExcluidoMapper.xml"/>
+		<mapper resource="com/ws/ios/persistencia/mapeos/UsuarioRolMapper.xml"/>
+ 	</mappers>
+</configuration>

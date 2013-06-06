@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.ws.ios.persistencia.mapeos.RolPermisoMapper">
+	<select id="getRolPermisos" parameterType="int" resultType="rolPermiso">
+    	SELECT idRol, 
+	       	   idPermiso
+    	FROM Rol 
+    	WHERE idRol = #{idRol}
+    </select>
+ 
+  	<insert id="creaRolPermiso" parameterType="rolPermiso">
+    	INSERT INTO RolPermiso (idRol, idPermiso)
+    	VALUES (#{idRol}, #{idPermiso})
+  	</insert>
+ 
+  	<delete id="eliminaRolPermiso" parameterType="rolPermiso">
+    	DELETE FROM RolPermiso
+    	WHERE idRol = #{idRol} AND idPermiso = #{idPermiso}
+  	</delete>
+  	
+  	<delete id="eliminaRolPermisos" parameterType="int">
+    	DELETE FROM RolPermiso 
+    	WHERE idRol = #{idRol}
+  	</delete>
+</mapper>

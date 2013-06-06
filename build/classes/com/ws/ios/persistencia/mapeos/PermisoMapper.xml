@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.ws.ios.persistencia.mapeos.PermisoMapper">
+	<select id="getPermisos" resultType="permiso">
+    	SELECT idPermiso, 
+	       	   clave, 
+	           nombre, 
+	           descripcion,
+	           idPermisoPadre 
+    	FROM Permiso 
+    	ORDER BY nombre
+    </select>
+
+	<resultMap id="permisoResultMap" type="permiso">
+		<id property="idPermiso" column="idPermiso"/>
+		<result property="clave" column="clave"/>
+		<result property="nombre" column="nombre"/>
+		<result property="descripcion" column="descripcion"/>
+		<result property="idPermisoPadre" column="idPermisoPadre"/>
+	</resultMap>
+	<select id="getPermiso" parameterType="int" resultMap="permisoResultMap"> 
+		SELECT idPermiso, 
+	       	   clave, 
+	           nombre, 
+	           descripcion,
+	           idPermisoPadre 
+    	FROM Permiso 
+		WHERE idPermiso = #{idPermiso}
+	</select>
+ 
+  	<insert id="creaPermiso" keyColumn="idPermiso" useGeneratedKeys="true" parameterType="permiso">
+    	INSERT INTO Permiso (clave, nombre, descripcion, idPermisoPadre)
+    	VALUES (#{clave}, #{nombre}, #{descripcion}, #{idPermisoPadre})
+  	</insert>
+ 
+  	<update id="modificaPermiso" parameterType="permiso">
+    	UPDATE Permiso 
+    	SET clave = #{clave}, nombre = #{nombre}, descripcion = #{descripcion}, idPermisoPadre = #{idPermisoPadre}
+    	WHERE idPermiso = #{idPermiso}
+  	</update>
+ 
+  	<delete id="eliminaPermiso" parameterType="int">
+    	DELETE FROM Permiso 
+    	WHERE idPermiso = #{idPermiso}
+  	</delete>
+</mapper>

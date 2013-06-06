@@ -1,0 +1,1 @@
+{"id":0,"nombre":"Bean1","numero":66543,"lista":["Item1","Item2",false,33.33,"Wed Feb 13 23:08:42 GMT-06:00 2013"]}

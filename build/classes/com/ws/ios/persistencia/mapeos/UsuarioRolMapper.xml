@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.ws.ios.persistencia.mapeos.UsuarioRolMapper">
+	<select id="getUsuarioRoles" parameterType="int" resultType="usuarioRol">
+    	SELECT idUsuario,
+    	       idRol
+    	FROM UsuarioRol 
+    	WHERE idUsuario = #{idUsuario}
+    </select>
+ 
+  	<insert id="creaUsuarioRol" parameterType="usuarioRol">
+    	INSERT INTO UsuarioRol (idUsuario, idRol)
+    	VALUES (#{idUsuario}, #{idRol})
+  	</insert>
+ 
+  	<delete id="eliminaUsuarioRol" parameterType="usuarioRol">
+    	DELETE FROM UsuarioRol
+    	WHERE idUsuario = #{idUsuario} AND idRol = #{idRol}
+  	</delete>
+  	
+  	<delete id="eliminaUsuarioRoles" parameterType="int">
+    	DELETE FROM UsuarioRol 
+    	WHERE idUsuario = #{idUsuario}
+  	</delete>
+</mapper>

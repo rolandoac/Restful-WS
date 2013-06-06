@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.ws.ios.persistencia.mapeos.TipoUsuarioMapper">
+	<select id="getTiposUsuario" resultType="tipoUsuario">
+    	SELECT idTipoUsuario, 
+	       	   nombre, 
+	           descripcion
+    	FROM TipoUsuario 
+    	ORDER BY nombre
+    </select>
+
+	<resultMap id="tipoUsuarioResultMap" type="tipoUsuario">
+		<id property="idTipoUsuario" column="idTipoUsuario"/>
+		<result property="nombre" column="nombre"/>
+		<result property="descripcion" column="descripcion"/>
+	</resultMap>
+	<select id="getTipoUsuario" parameterType="int" resultMap="tipoUsuarioResultMap"> 
+		SELECT idTipoUsuario, 
+	       	   nombre, 
+	           descripcion 
+		FROM TipoUsuario 
+		WHERE idTipoUsuario = #{idTipoUsuario}
+	</select>
+ 
+  	<insert id="creaTipoUsuario" keyColumn="idTipoUsuario" useGeneratedKeys="true" parameterType="tipoUsuario">
+    	INSERT INTO TipoUsuario (clave, nombre, descripcion)
+    	VALUES (#{clave}, #{nombre}, #{descripcion})
+  	</insert>
+ 
+  	<update id="modificaTipoUsuario" parameterType="tipoUsuario">
+    	UPDATE TipoUsuario 
+    	SET clave = #{clave}, nombre = #{nombre}, descripcion = #{descripcion}
+    	WHERE idTipoUsuario = #{idTipoUsuario}
+  	</update>
+ 
+  	<delete id="eliminaTipoUsuario" parameterType="int">
+    	DELETE FROM TipoUsuario 
+    	WHERE idTipoUsuario = #{idTipoUsuario}
+  	</delete>
+</mapper>

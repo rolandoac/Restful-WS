@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.ws.ios.persistencia.mapeos.PersonaMapper">
+	<select id="getPersonas" resultType="persona">
+    	SELECT idPersona, 
+	       	   nombres, 
+	           apellidoPaterno, 
+	           apellidoMaterno 
+    	FROM Persona 
+    	ORDER BY apellidoPaterno
+    </select>
+
+	<resultMap id="personaResultMap" type="persona">
+		<id property="idPersona" column="idPersona"/>
+		<result property="nombres" column="nombres"/>
+		<result property="apellidoPaterno" column="apellidoPaterno"/>
+		<result property="apellidoMaterno" column="apellidoMaterno"/>
+	</resultMap>
+	<select id="getPersona" parameterType="int" resultMap="personaResultMap"> 
+		SELECT idPersona, 
+	       	   nombres, 
+	           apellidoPaterno, 
+	           apellidoMaterno 
+		FROM Persona 
+		WHERE idPersona = #{idPersona}
+	</select>
+ 
+  	<insert id="creaPersona" keyColumn="idPersona" useGeneratedKeys="true" parameterType="persona">
+    	INSERT INTO Persona (nombres, apellidoPaterno, apellidoMaterno)
+    	VALUES (#{nombres}, #{apellidoPaterno}, #{apellidoMaterno})
+  	</insert>
+ 
+  	<update id="modificaPersona" parameterType="persona">
+    	UPDATE Persona 
+    	SET nombres = #{nombres}, apellidoPaterno = #{apellidoPaterno}, apellidoMaterno = #{apellidoMaterno}
+    	WHERE idPersona = #{idPersona}
+  	</update>
+ 
+  	<delete id="eliminaPersona" parameterType="int">
+    	DELETE FROM Persona 
+    	WHERE idPersona = #{idPersona}
+  	</delete>
+</mapper>

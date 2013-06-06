@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.ws.ios.persistencia.mapeos.RolMapper">
+	<select id="getRoles" resultType="rol">
+    	SELECT idRol, 
+	       	   clave, 
+	           nombre, 
+	           descripcion
+    	FROM Rol 
+    	ORDER BY nombre
+    </select>
+
+	<resultMap id="rolResultMap" type="rol">
+		<id property="idRol" column="idRol"/>
+		<result property="clave" column="clave"/>
+		<result property="nombre" column="nombre"/>
+		<result property="descripcion" column="descripcion"/>
+	</resultMap>
+	<select id="getRol" parameterType="int" resultMap="rolResultMap"> 
+		SELECT idRol, 
+	       	   clave, 
+	           nombre, 
+	           descripcion
+    	FROM Rol 
+		WHERE idRol = #{idRol}
+	</select>
+ 
+  	<insert id="creaRol" keyColumn="idRol" useGeneratedKeys="true" parameterType="rol">
+    	INSERT INTO Rol (clave, nombre, descripcion)
+    	VALUES (#{clave}, #{nombre}, #{descripcion})
+  	</insert>
+ 
+  	<update id="modificaRol" parameterType="rol">
+    	UPDATE Rol 
+    	SET clave = #{clave}, nombre = #{nombre}, descripcion = #{descripcion}
+    	WHERE idRol = #{idRol}
+  	</update>
+ 
+  	<delete id="eliminaRol" parameterType="int">
+    	DELETE FROM Rol 
+    	WHERE idRol = #{idRol}
+  	</delete>
+</mapper>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?> 
+<!DOCTYPE mapper 
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd"> 
+<mapper namespace="com.ws.ios.persistencia.mapeos.UsuarioMapper">
+	<select id="getUsuarios" resultType="usuario">
+    	SELECT idUsuario, 
+	       	   usuario, 
+	           contrasena, 
+	           idPersona,
+	           idTipoUsuario,
+	           fechaExpiracion,
+	           fechaCreacion
+    	FROM Usuario 
+    	ORDER BY usuario
+    </select>
+
+	<resultMap id="usuarioResultMap" type="usuario">
+		<id property="idUsuario" column="idUsuario"/>
+		<result property="usuario" column="usuario"/>
+		<result property="contrasena" column="contrasena"/>
+		<result property="idPersona" column="idPersona"/>
+		<result property="idTipoUsuario" column="idTipoUsuario"/>
+		<result property="fechaExpiracion" column="fechaExpiracion"/>
+		<result property="fechaCreacion" column="fechaCreacion"/>
+	</resultMap>
+	<select id="getUsuario" parameterType="int" resultMap="usuarioResultMap"> 
+		SELECT idUsuario, 
+	       	   usuario, 
+	           contrasena, 
+	           idPersona,
+	           idTipoUsuario,
+	           fechaExpiracion,
+	           fechaCreacion
+    	FROM Usuario
+		WHERE idUsuario = #{idUsuario}
+	</select>
+ 
+  	<insert id="creaUsuario" keyColumn="idUsuario" useGeneratedKeys="true" parameterType="usuario">
+    	INSERT INTO Usuario (usuario, contrasena, idPersona, idTipoUsuario, fechaExpiracion, fechaCreacion)
+    	VALUES (#{usuario}, #{contrasena}, #{idPersona}, #{idTipoUsuario}, #{fechaExpiracion}, #{fechaCreacion})
+  	</insert>
+ 
+  	<update id="modificaUsuario" parameterType="usuario">
+    	UPDATE Usuario 
+    	SET usuario = #{usuario}, contrasena = #{contrasena}, idPersona = #{idPersona}, idTipoUsuario = #{idTipoUsuario}, fechaExpiracion = #{fechaExpiracion}, fechaCreacion = #{fechaCreacion}
+    	WHERE idUsuario = #{idUsuario}
+  	</update>
+ 
+  	<delete id="eliminaUsuario" parameterType="int">
+    	DELETE FROM Usuario 
+    	WHERE idUsuario = #{idUsuario}
+  	</delete>
+</mapper>
