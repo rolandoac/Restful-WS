@@ -9,6 +9,26 @@ import com.google.gson.Gson;
 public class ServiciosPublicados {
 	
 	@GET
+	@Path("/GetPermisos")
+	@Produces("application/json")
+	public String permisos() {
+		String permisos  = null;
+		
+		try {
+			ArrayList<Permiso> listPermisos = null;
+			PermisoService permisoService = new PermisoService();
+			listPermisos = permisoService.getPermisos();
+			Gson gson = new Gson();
+			permisos = gson.toJson(listPermisos);
+		} 
+		catch (Exception e) {
+			System.out.println("Error al obtener el listado de permisos");
+		}
+		
+		return permisos;
+	}
+	
+	@GET
 	@Path("/GetUsuarios")
 	@Produces("application/json")
 	public String usuarios() {
