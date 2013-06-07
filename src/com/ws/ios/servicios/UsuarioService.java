@@ -2,17 +2,15 @@ package com.ws.ios.servicios;
 
 import com.ws.ios.dominio.Usuario;
 import com.ws.ios.persistencia.mapeos.*;
-import java.io.*;
 import java.util.ArrayList;
-import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.*;
 
 public class UsuarioService {
     public ArrayList<Usuario> getUsuarios() throws Exception {
 		ArrayList<Usuario> listUsuarios = null;
 		
-	    UsuarioService usuarioService = new UsuarioService();
-	    SqlSessionFactory factory = usuarioService.getSessionFactory();       
+		MyBatisSessionFactory myBatisSessionFactory = MyBatisSessionFactory.getInstance();
+	    SqlSessionFactory factory = myBatisSessionFactory.getSessionFactory();       
 	    SqlSession session = factory.openSession();
 
 		try {
@@ -25,12 +23,28 @@ public class UsuarioService {
 		
 		return listUsuarios;
 	}
-
-    public SqlSessionFactory getSessionFactory() throws IOException {
-        String res = "com/ws/ios/config/Configuration.xml";
-        Reader reader = Resources.getResourceAsReader(res);
-        SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
-        
-        return builder.build(reader);
-    }
+    
+	public Usuario getUsuario(int idUsuario) {
+		Usuario usuario = null;
+		
+		return usuario;
+	}
+	
+	public boolean creaUsuario(Usuario usuario) {
+		boolean commiteado = false;
+		
+		return commiteado;				
+	}
+	
+	public boolean modificaUsuario(Usuario usuario) {
+		boolean commiteado = false;
+		
+		return commiteado;				
+	}
+	
+	public boolean eliminaUsuario(int idUsuario) {
+		boolean commiteado = false;
+		
+		return commiteado;				
+	}
 }

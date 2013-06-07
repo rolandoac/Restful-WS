@@ -2,17 +2,15 @@ package com.ws.ios.servicios;
 
 import com.ws.ios.dominio.Persona;
 import com.ws.ios.persistencia.mapeos.*;
-import java.io.*;
 import java.util.ArrayList;
-import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.*;
 
 public class PersonaService {    
     public ArrayList<Persona> getPersonas() throws Exception {
 		ArrayList<Persona> listPersonas = null;
 		
-	    PersonaService personaService = new PersonaService();
-	    SqlSessionFactory factory = personaService.getSessionFactory();       
+		MyBatisSessionFactory myBatisSessionFactory = MyBatisSessionFactory.getInstance();
+	    SqlSessionFactory factory = myBatisSessionFactory.getSessionFactory();       
 	    SqlSession session = factory.openSession();
 
 		try {
@@ -25,12 +23,28 @@ public class PersonaService {
 		
 		return listPersonas;
 	}
-
-    public SqlSessionFactory getSessionFactory() throws IOException {
-        String res = "com/ws/ios/config/Configuration.xml";
-        Reader reader = Resources.getResourceAsReader(res);
-        SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();
-        
-        return builder.build(reader);
-    }
+    
+	public Persona getPersona(int idPersona) {
+		Persona persona = null;
+		
+		return persona;
+	}
+	
+	public boolean creaPersona(Persona persona) {
+		boolean commiteado = false;
+		
+		return commiteado;
+	}
+	
+	public boolean modificaPersona(Persona persona) {
+		boolean commiteado = false;
+		
+		return commiteado;
+	}
+	
+	public boolean eliminaPersona(int idPersona) {
+		boolean commiteado = false;
+		
+		return commiteado;
+	}
 }

@@ -9,8 +9,8 @@ public class PermisoService {
 	 public ArrayList<Permiso> getPermisos() throws Exception {
 		ArrayList<Permiso> listPermisos = null;
 			
-		MyBatisSessionFactory permisoService = MyBatisSessionFactory.getInstance();
-		SqlSessionFactory factory = permisoService.getSessionFactory();       
+		MyBatisSessionFactory myBatisSessionFactory = MyBatisSessionFactory.getInstance();
+		SqlSessionFactory factory = myBatisSessionFactory.getSessionFactory();       
 		SqlSession session = factory.openSession();
 
 	    try {
