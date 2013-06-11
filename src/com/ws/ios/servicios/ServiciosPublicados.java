@@ -30,7 +30,7 @@ public class ServiciosPublicados {
 			e.printStackTrace();
 		}
 		
-        log.info("Servicios cargados correctamente...");
+        log.error("Servicios cargados correctamente...");
 	}
 	
 	@GET
