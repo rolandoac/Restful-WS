@@ -3,6 +3,7 @@ package com.ws.ios.servicios;
 import java.io.IOException;
 import java.util.*;
 import javax.ws.rs.*;
+import org.apache.log4j.Logger;
 import com.ws.ios.dominio.*;
 import com.google.gson.Gson;
 
@@ -10,6 +11,7 @@ import com.google.gson.Gson;
 public class ServiciosPublicados {	
 	private Gson gson = null;
 	private MyBatisSessionFactory sf;
+	private static Logger log = Logger.getLogger(ServiciosPublicados.class);
 	
 	public ServiciosPublicados() {
 		this.sf = new MyBatisSessionFactory();
@@ -23,9 +25,12 @@ public class ServiciosPublicados {
 			if (sf.getSessionFactory() == null) {
 				System.out.println("Error al cargar el session factory");
 			}
-		} catch (IOException e) {
+		} 
+		catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+        log.info("Servicios cargados correctamente...");
 	}
 	
 	@GET

@@ -8,6 +8,7 @@ import org.apache.ibatis.session.*;
 public class PersonaService {    
 	private SqlSessionFactory mySessionFactory = null;
 	
+	
 	public PersonaService(SqlSessionFactory sf) {
 		this.mySessionFactory = sf;
 	}
