@@ -1,18 +1,22 @@
 package com.ws.ios.servicios;
 
 import com.ws.ios.dominio.Usuario;
-import com.ws.ios.persistencia.mapeos.*;
+import com.ws.ios.persistencia.mapeos.UsuarioMapper;
 import java.util.ArrayList;
 import org.apache.ibatis.session.*;
 
 public class UsuarioService {
+	private SqlSessionFactory mySessionFactory = null;
+	
+	public UsuarioService(SqlSessionFactory sf) {
+		this.mySessionFactory = sf;
+	}
+	
     public ArrayList<Usuario> getUsuarios() throws Exception {
 		ArrayList<Usuario> listUsuarios = null;
 		
-		MyBatisSessionFactory myBatisSessionFactory = MyBatisSessionFactory.getInstance();
-	    SqlSessionFactory factory = myBatisSessionFactory.getSessionFactory();       
-	    SqlSession session = factory.openSession();
-
+		SqlSession session = mySessionFactory.openSession();
+		
 		try {
 			 UsuarioMapper mapper = session.getMapper(UsuarioMapper.class);
 	         listUsuarios = mapper.getUsuarios();

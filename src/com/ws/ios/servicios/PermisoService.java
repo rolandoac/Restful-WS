@@ -1,17 +1,21 @@
 package com.ws.ios.servicios;
 
 import com.ws.ios.dominio.Permiso;
-import com.ws.ios.persistencia.mapeos.*;
+import com.ws.ios.persistencia.mapeos.PermisoMapper;
 import java.util.ArrayList;
 import org.apache.ibatis.session.*;
 
 public class PermisoService {
+	private SqlSessionFactory mySessionFactory = null;
+	
+	public PermisoService(SqlSessionFactory sf) {
+		this.mySessionFactory = sf;
+	}
+	
 	 public ArrayList<Permiso> getPermisos() throws Exception {
 		ArrayList<Permiso> listPermisos = null;
-			
-		MyBatisSessionFactory myBatisSessionFactory = MyBatisSessionFactory.getInstance();
-		SqlSessionFactory factory = myBatisSessionFactory.getSessionFactory();       
-		SqlSession session = factory.openSession();
+		
+		SqlSession session = mySessionFactory.openSession();
 
 	    try {
 		    PermisoMapper mapper = session.getMapper(PermisoMapper.class);

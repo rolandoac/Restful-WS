@@ -7,12 +7,16 @@ import com.ws.ios.dominio.RolPermiso;
 import com.ws.ios.persistencia.mapeos.RolPermisoMapper;
 
 public class RolPermisoService {
+	private SqlSessionFactory mySessionFactory = null;
+	
+	public RolPermisoService(SqlSessionFactory sf) {
+		this.mySessionFactory = sf;
+	}
+	
 	public ArrayList<RolPermiso> getRolPermisos(int idRol) throws Exception {
 		ArrayList<RolPermiso> listRolPermisos = null;
 		
-		MyBatisSessionFactory myBatisSessionFactory = MyBatisSessionFactory.getInstance();
-	    SqlSessionFactory factory = myBatisSessionFactory.getSessionFactory();       
-	    SqlSession session = factory.openSession();
+		SqlSession session = mySessionFactory.openSession();
 
 		try {
 			 RolPermisoMapper mapper = session.getMapper(RolPermisoMapper.class);

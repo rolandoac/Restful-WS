@@ -1,17 +1,21 @@
 package com.ws.ios.servicios;
 
 import com.ws.ios.dominio.Persona;
-import com.ws.ios.persistencia.mapeos.*;
+import com.ws.ios.persistencia.mapeos.PersonaMapper;
 import java.util.ArrayList;
 import org.apache.ibatis.session.*;
 
 public class PersonaService {    
+	private SqlSessionFactory mySessionFactory = null;
+	
+	public PersonaService(SqlSessionFactory sf) {
+		this.mySessionFactory = sf;
+	}
+	
     public ArrayList<Persona> getPersonas() throws Exception {
 		ArrayList<Persona> listPersonas = null;
 		
-		MyBatisSessionFactory myBatisSessionFactory = MyBatisSessionFactory.getInstance();
-	    SqlSessionFactory factory = myBatisSessionFactory.getSessionFactory();       
-	    SqlSession session = factory.openSession();
+		SqlSession session = mySessionFactory.openSession();
 
 		try {
 			 PersonaMapper mapper = session.getMapper(PersonaMapper.class);
