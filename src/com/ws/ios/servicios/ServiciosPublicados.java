@@ -1,9 +1,13 @@
 package com.ws.ios.servicios;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.*;
 import javax.ws.rs.*;
 import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
+import org.apache.log4j.helpers.Loader;
+
 import com.ws.ios.dominio.*;
 import com.google.gson.Gson;
 
@@ -30,7 +34,10 @@ public class ServiciosPublicados {
 			e.printStackTrace();
 		}
 		
-        log.error("Servicios cargados correctamente...");
+		URL url = Loader.getResource("/com/ws/ios/config/log4j.properties");
+		System.out.println (url.toString()); 
+		PropertyConfigurator.configure(url);
+		log.info("Servicios cargados correctamente...");
 	}
 	
 	@GET
