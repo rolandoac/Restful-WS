@@ -13,8 +13,7 @@ public class PermisoService {
 	}
 	
 	 public ArrayList<Permiso> getPermisos() throws Exception {
-		ArrayList<Permiso> listPermisos = null;
-		
+		ArrayList<Permiso> listPermisos = null;		
 		SqlSession session = mySessionFactory.openSession();
 
 	    try {

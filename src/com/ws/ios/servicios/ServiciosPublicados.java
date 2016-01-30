@@ -205,7 +205,7 @@ public class ServiciosPublicados {
 			usuarios = gson.toJson(listUsuarios);
 		} 
 		catch (Exception e) {
-			System.out.println("Error al obtener el listado de usuarios");
+			System.out.println("Error la lista de usuarios");
 		}
 		
 		return usuarios;
